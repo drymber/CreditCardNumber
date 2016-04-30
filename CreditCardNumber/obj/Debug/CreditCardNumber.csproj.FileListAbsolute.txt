@@ -5,3 +5,5 @@ F:\Kottans\CreditCardNumber\bin\Debug\CreditCardNumber.pdb
 F:\Kottans\CreditCardNumber\obj\Debug\CreditCardNumber.csprojResolveAssemblyReference.cache
 F:\Kottans\CreditCardNumber\obj\Debug\CreditCardNumber.exe
 F:\Kottans\CreditCardNumber\obj\Debug\CreditCardNumber.pdb
+F:\Kottans\CreditCardNumber\CreditCardNumber\obj\Debug\CreditCardNumber.exe
+F:\Kottans\CreditCardNumber\CreditCardNumber\obj\Debug\CreditCardNumber.pdb
