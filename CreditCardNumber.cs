@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 
 namespace Kottans.Task
 {
@@ -64,13 +63,13 @@ namespace Kottans.Task
         }
         public static string GenerateNextCreditCardNumber(string creditCardNumber)
         {
+			creditCardNumber = creditCardNumber.Replace(" ", "");
 			if (!IsNumber(creditCardNumber))
 			{
 				throw new FormatException("Invalid credit card number");
 			}
-            creditCardNumber = creditCardNumber.Replace(" ", "");
             decimal number = Convert.ToDecimal(creditCardNumber);
-            do
+			do
             {
                 number++;
             }
