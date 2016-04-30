@@ -1,0 +1,7 @@
+F:\Kottans\CreditCardNumber\CreditCardNumber\bin\Debug\CreditCardNumber.exe.config
+F:\Kottans\CreditCardNumber\bin\Debug\CreditCardNumber.exe.config
+F:\Kottans\CreditCardNumber\bin\Debug\CreditCardNumber.exe
+F:\Kottans\CreditCardNumber\bin\Debug\CreditCardNumber.pdb
+F:\Kottans\CreditCardNumber\obj\Debug\CreditCardNumber.csprojResolveAssemblyReference.cache
+F:\Kottans\CreditCardNumber\obj\Debug\CreditCardNumber.exe
+F:\Kottans\CreditCardNumber\obj\Debug\CreditCardNumber.pdb
