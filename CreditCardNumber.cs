@@ -2,7 +2,7 @@
 
 namespace Kottans.Task
 {
-    public class CreditCard
+    public static class CreditCard
     {
         public static string GetCreditCardVendor(string creditCardNumber)
         {
@@ -63,20 +63,20 @@ namespace Kottans.Task
         }
         public static string GenerateNextCreditCardNumber(string creditCardNumber)
         {
-			creditCardNumber = creditCardNumber.Replace(" ", "");
-			if (!IsNumber(creditCardNumber))
-			{
-				throw new FormatException("Invalid format of credit card number");
-			}
+            creditCardNumber = creditCardNumber.Replace(" ", "");
+            if (!IsNumber(creditCardNumber))
+            {
+                throw new FormatException("Invalid format of credit card number");
+            }
             decimal number = Convert.ToDecimal(creditCardNumber);
-			do
+            do
             {
                 number++;
             }
             while (!IsCreditCardNumberValid(number.ToString()));
             return number.ToString();
         }
-		// Method to check if given credit card number consists only of numbers
+        // Method to check if given credit card number consists only of numbers
         private static bool IsNumber(string number)
         {
             try
@@ -116,6 +116,7 @@ namespace Kottans.Task
             catch (ArgumentException ex)
             {
                 Console.WriteLine(ex);
+                Console.ReadLine();
             }
         }
     }
