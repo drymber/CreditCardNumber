@@ -10,7 +10,7 @@ namespace Kottans.Task
             creditCardNumber.Replace(" ", "");
             if (!IsNumber(creditCardNumber))
             {
-                throw new FormatException("Invalid credit card number");
+                throw new ArgumentException("Invalid credit card number");
             }
 
             int IIN = Convert.ToInt32(creditCardNumber.Substring(0, 2));
@@ -64,6 +64,10 @@ namespace Kottans.Task
         }
         public static string GenerateNextCreditCardNumber(string creditCardNumber)
         {
+			if (!IsNumber(creditCardNumber))
+			{
+				throw new FormatException("Invalid credit card number");
+			}
             creditCardNumber = creditCardNumber.Replace(" ", "");
             decimal number = Convert.ToDecimal(creditCardNumber);
             do
@@ -73,14 +77,14 @@ namespace Kottans.Task
             while (!IsCreditCardNumberValid(number.ToString()));
             return number.ToString();
         }
+		// Method to check if given credit card number consists only of numbers
         private static bool IsNumber(string number)
         {
             try
             {
                 foreach (char c in number)
                 {
-                    int n;
-                    Int32.TryParse(c.ToString(), out n);
+                    Convert.ToInt32(c.ToString());
                 }
                 return true;
             }
@@ -94,6 +98,7 @@ namespace Kottans.Task
     {
         public static void Main()
         {
+			// Testing result
             string number = "4561 2612 1234 5467";
             string vendor = CreditCard.GetCreditCardVendor(number);
             bool isValid = CreditCard.IsCreditCardNumberValid(number);
@@ -104,5 +109,4 @@ namespace Kottans.Task
             Console.ReadLine();
         }
     }
-
 }
