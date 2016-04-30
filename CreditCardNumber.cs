@@ -6,7 +6,7 @@ namespace Kottans.Task
     {
         public static string GetCreditCardVendor(string creditCardNumber)
         {
-            creditCardNumber.Replace(" ", "");
+            creditCardNumber = creditCardNumber.Replace(" ", "");
             if (!IsNumber(creditCardNumber))
             {
                 throw new ArgumentException("Invalid credit card number");
