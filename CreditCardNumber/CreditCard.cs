@@ -8,9 +8,9 @@ namespace CreditCardNumber
         public static string GetCreditCardVendor(string creditCardNumber)
         {
             creditCardNumber = creditCardNumber.Replace(" ", "");
-            if (!IsNumber(creditCardNumber))
+            if (!IsCreditCardNumberValid(creditCardNumber))
             {
-                throw new ArgumentException("Invalid format of credit card number");
+                return "Unknown";
             }
 
             int IIN = Convert.ToInt32(creditCardNumber.Substring(0, 2));
@@ -49,7 +49,7 @@ namespace CreditCardNumber
             for (var i = creditCardNumber.Length - 1; i >= 0; i--)
             {
                 int number = Convert.ToInt32(creditCardNumber[i].ToString());
-                if (i % 2 == 0)
+                if ((creditCardNumber.Length - i) % 2 == 0)
                 {
                     number *= 2;
                     if (number > 9)

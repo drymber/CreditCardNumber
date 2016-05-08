@@ -10,7 +10,7 @@ namespace Kottans.Task
         {
             try
             {
-                string number = "4561 2612 1234 5467";
+                string number = "343434343434343";
                 // Find out the vendor of the credit card
                 string vendor = CreditCard.GetCreditCardVendor(number);
                 Console.WriteLine(vendor);
