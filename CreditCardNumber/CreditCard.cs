@@ -13,29 +13,7 @@ namespace CreditCardNumber
                 return "Unknown";
             }
 
-            int IIN = Convert.ToInt32(creditCardNumber.Substring(0, 2));
-            int longIIN = Convert.ToInt32(creditCardNumber.Substring(0, 4));
-            if (IIN == 34 || IIN == 37)
-            {
-                return "American Express";
-            }
-            if (IIN == 50 || (IIN >= 56 && IIN <= 69))
-            {
-                return "Maestro";
-            }
-            if (IIN >= 51 && IIN <= 55)
-            {
-                return "MasterCard";
-            }
-            if (creditCardNumber[0].Equals('4'))
-            {
-                return "VISA";
-            }
-            if (longIIN >= 3528 && longIIN <= 3589)
-            {
-                return "JCB";
-            }
-            return "Unknown";
+            return SwitchVendors(creditCardNumber);
         }
         public static bool IsCreditCardNumberValid(string creditCardNumber)
         {
@@ -69,12 +47,20 @@ namespace CreditCardNumber
             {
                 throw new FormatException("Invalid format of credit card number");
             }
+            string vendor = GetCreditCardVendor(creditCardNumber);
             decimal number = Convert.ToDecimal(creditCardNumber);
             do
             {
-                number++;
+                if (SwitchVendors((number + 1).ToString()) == vendor)
+                {
+                    number++;
+                }
+                else
+                {
+                    throw new ArgumentException("No more card numbers available for this vendor");
+                }
             }
-            while (!IsCreditCardNumberValid(number.ToString()));
+            while (GetCreditCardVendor(number.ToString()) == "Unknown" && SwitchVendors(number.ToString()) == vendor);
             return number.ToString();
         }
         // Method to check if given credit card number consists only of numbers
@@ -92,6 +78,33 @@ namespace CreditCardNumber
             {
                 return false;
             }
+        }
+        private static string SwitchVendors(string creditCardNumber)
+        {
+            creditCardNumber = creditCardNumber.Replace(" ", "");
+            int IIN = Convert.ToInt32(creditCardNumber.Substring(0, 2));
+            int longIIN = Convert.ToInt32(creditCardNumber.Substring(0, 4));
+            if (IIN == 34 || IIN == 37)
+            {
+                return "American Express";
+            }
+            if (IIN == 50 || (IIN >= 56 && IIN <= 69))
+            {
+                return "Maestro";
+            }
+            if (IIN >= 51 && IIN <= 55)
+            {
+                return "MasterCard";
+            }
+            if (creditCardNumber[0].Equals('4'))
+            {
+                return "VISA";
+            }
+            if (longIIN >= 3528 && longIIN <= 3589)
+            {
+                return "JCB";
+            }
+            return "Unknown";
         }
     }
 }
