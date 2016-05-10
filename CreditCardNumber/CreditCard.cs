@@ -82,25 +82,26 @@ namespace CreditCardNumber
         private static string SwitchVendors(string creditCardNumber)
         {
             creditCardNumber = creditCardNumber.Replace(" ", "");
+            int length = creditCardNumber.Length;
             int IIN = Convert.ToInt32(creditCardNumber.Substring(0, 2));
             int longIIN = Convert.ToInt32(creditCardNumber.Substring(0, 4));
-            if (IIN == 34 || IIN == 37)
+            if (IIN == 34 || IIN == 37 && length == 15)
             {
                 return "American Express";
             }
-            if (IIN == 50 || (IIN >= 56 && IIN <= 69))
+            if ((IIN == 50 || (IIN >= 56 && IIN <= 69)) && length > 12 && length < 19)
             {
                 return "Maestro";
             }
-            if (IIN >= 51 && IIN <= 55)
+            if (IIN >= 51 && IIN <= 55 && length == 16)
             {
                 return "MasterCard";
             }
-            if (creditCardNumber[0].Equals('4'))
+            if (creditCardNumber[0].Equals('4') && (length == 13 || length == 16 || length == 19))
             {
                 return "VISA";
             }
-            if (longIIN >= 3528 && longIIN <= 3589)
+            if (longIIN >= 3528 && longIIN <= 3589 && length == 16)
             {
                 return "JCB";
             }
