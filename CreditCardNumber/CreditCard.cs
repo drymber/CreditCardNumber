@@ -22,6 +22,10 @@ namespace CreditCardNumber
             {
                 throw new FormatException("Invalid format of credit card number");
             }
+            if (SwitchVendors(creditCardNumber) == "Unknown")
+            {
+                return false;
+            }
 
             int sum = 0;
             for (var i = creditCardNumber.Length - 1; i >= 0; i--)
@@ -37,8 +41,7 @@ namespace CreditCardNumber
                 }
                 sum += number;
             }
-            bool isValid = (sum % 10 == 0) ? true : false;
-            return isValid;
+            return (sum % 10 == 0) ? true : false;
         }
         public static string GenerateNextCreditCardNumber(string creditCardNumber)
         {
